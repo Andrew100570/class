@@ -15,6 +15,10 @@ class CreateEntrysTable extends Migration
     {
         Schema::create('entrys', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users');
+            $table->text('description')->collation('utf8_general_ci');
             $table->timestamps();
         });
     }
