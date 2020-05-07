@@ -10,6 +10,8 @@ class Entry extends Model
         'updated_at'
     ];
 
+    protected $table='entrys';
+
     public function user()
     {
         return $this->belongsTo('App\User');
