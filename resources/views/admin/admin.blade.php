@@ -6,7 +6,7 @@
             <div class="col-md-8">
                    <h1>Admin</h1>
                 @foreach ($managers as $manager)
-                   <a href="{{route('manager.id', ['id'=>$manager->id])}}">{{ $manager->name }}</a>
+                   <a href="{{route('manager_by_id', ['id'=>$manager->id])}}">{{ $manager->name }}</a>
                     <br/>
                 @endforeach
             </div>

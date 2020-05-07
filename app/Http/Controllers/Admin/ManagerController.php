@@ -23,10 +23,4 @@ class ManagerController extends Controller
         return view('admin.manager',['entries'=>$entries,'user'=>$user]);
     }
 
-    public function tableById($id)
-    {
-        $user = User::find($id);
-        $entries = $user->entries()->get();
-        return view('admin.admin_manager',['entries'=>$entries,'user'=>$user]);
-    }
 }

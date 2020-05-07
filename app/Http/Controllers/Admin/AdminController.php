@@ -15,4 +15,11 @@ class AdminController extends Controller
         $managers = User::where('role','0')->get();
         return view('admin.admin',['managers'=>$managers]);
     }
+
+    public function tableById($id)
+    {
+        $user = User::find($id);
+        $entries = $user->entries()->get();
+        return view('admin.admin_manager',['entries'=>$entries,'user'=>$user]);
+    }
 }

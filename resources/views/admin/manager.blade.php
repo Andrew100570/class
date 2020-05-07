@@ -9,6 +9,18 @@
                     <p>{{ $entry->description }}</p>
                 @endforeach
             </div>
+            <form method="POST" action="{{route('admin.saveTask')}}" id="form">
+                {{csrf_field()}}
+                <div class="form-row">
+                    <label for="description">Описание задачи</label>
+                </div>
+                <div class="form-row mb-3">
+                    <textarea type="text" name="description" id="textarea"></textarea>
+                </div>
+                <div class="form-row mb-3">
+                    <button type="submit" class="btn btn-primary">Создать задачу</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
