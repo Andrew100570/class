@@ -12,6 +12,6 @@ class ManagerController extends Controller
     {
         $user = Auth::user();
         $entries = $user->entries()->get();
-        return view('admin.manager',['entries'=>$entries]);
+        return view('admin.manager',['entries'=>$entries,'user'=>$user]);
     }
 }
