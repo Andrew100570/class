@@ -26,4 +26,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminProperties'], function 
 
 });
 
-Route::get('/manager', 'Admin\ManagerController@index')->name('manager');
+
+Route::group(['prefix' => 'manager', 'middleware' => 'ManagerProperties'], function () {
+
+    Route::get('/', 'Admin\ManagerController@index')->name('manager');
+
+});
+
