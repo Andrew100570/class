@@ -4,10 +4,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                   <h1>Admin</h1>
-                @foreach ($managers as $manager)
-                   <a href="{{route('manager.id', ['id'=>$manager->id])}}">{{ $manager->name }}</a>
-                    <br/>
+                <h1>Manager {{ $user->name }}</h1>
+                @foreach ($entries as $entry)
+                    <p>{{ $entry->description }}</p>
                 @endforeach
             </div>
         </div>

@@ -12,8 +12,7 @@ class AdminController extends Controller
 
     public function index()
     {
-//        User::where('name','!','Admin')->get();
-//        dd();
-        return view('admin.admin');
+        $managers = User::where('role','0')->get();
+        return view('admin.admin',['managers'=>$managers]);
     }
 }
