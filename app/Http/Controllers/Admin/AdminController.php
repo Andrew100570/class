@@ -87,5 +87,15 @@ class AdminController extends Controller
         return redirect()->route('manager_by_id',['id'=>$entry->user_id]);
     }
 
+    public function deleteEntry($id)
+    {
+       $entry = Entry::find($id);
+       $user_id = $entry->user_id;
+       $entry->delete();
+
+       return redirect()->route('manager_by_id',['id'=>$user_id]);
+    }
+
+
 
 }

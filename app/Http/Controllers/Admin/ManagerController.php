@@ -50,7 +50,6 @@ class ManagerController extends Controller
 
                 $save = new Entry();
 
-
                 $save->user_id = Auth::user()->id;
                 $save->description = $description;
 

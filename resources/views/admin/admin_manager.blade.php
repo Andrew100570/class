@@ -7,7 +7,8 @@
                 <h1>Manager {{ $user->name }}</h1>
                 @foreach ($entries as $entry)
                     <p>{{ $entry->description }}</p>
-                    <a href="{{route('admin_edit',['id'=>$entry->id])}}">{{ $entry->id }}</a>
+                    <a href="{{route('admin_edit',['id'=>$entry->id])}}">Изменить</a>
+                    <a href="{{route('admin_delete',['id'=>$entry->id])}}">Удалить</a>
                 @endforeach
             </div>
             <form method="POST" action="{{route('manager_entry')}}" id="form">

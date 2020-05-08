@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminProperties'], function 
     Route::post('/', 'Admin\AdminController@saveEntry')->name('admin_entry');
     Route::get('/edit/{id}', 'Admin\AdminController@editEntry')->name('admin_edit');
     Route::post('/save', 'Admin\AdminController@saveEditEntry')->name('admin_edit_save');
+    Route::get('/delete/{id}', 'Admin\AdminController@deleteEntry')->name('admin_delete');
 
 });
 
