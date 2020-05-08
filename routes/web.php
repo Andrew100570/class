@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminProperties'], function 
 });
 
 
-Route::group(['prefix' => 'manager', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'manager', 'middleware' => ['auth','verified']], function () {
 
     Route::get('/', 'Admin\ManagerController@index')->name('manager');
     Route::post('/', 'Admin\ManagerController@saveEntry')->name('manager_entry');
