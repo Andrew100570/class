@@ -66,5 +66,24 @@ class ManagerController extends Controller
         return redirect('manager');
     }
 
+    public function editEntry($id)
+    {
+        $entries = Entry::find($id);
+        return view('admin.edit_manager',['entries'=>$entries]);
+    }
+
+    public function saveEditEntry(Request $request)
+    {
+        $description = strip_tags($request->all()['description']);
+        $description = htmlspecialchars($description, ENT_QUOTES);
+
+        $entry = Entry::find($request->all()['id']);
+
+        $entry->description = $description;
+        $entry->save();
+
+        return redirect('manager');
+    }
+
 
 }

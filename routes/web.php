@@ -32,7 +32,7 @@ Route::group(['prefix' => 'manager', 'middleware' => 'auth'], function () {
 
     Route::get('/', 'Admin\ManagerController@index')->name('manager');
     Route::post('/', 'Admin\ManagerController@saveEntry')->name('manager_entry');
-
-
+    Route::get('/edit/{id}', 'Admin\ManagerController@editEntry')->name('manager_edit');
+    Route::post('/save', 'Admin\ManagerController@saveEditEntry')->name('manager_edit_save');
 });
 
