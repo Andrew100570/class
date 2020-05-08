@@ -9,7 +9,7 @@
                     <p>{{ $entry->description }}</p>
                 @endforeach
             </div>
-            <form method="POST" action="{{route('admin.saveTask')}}" id="form">
+            <form method="POST" action="{{route('manager_entry')}}" id="form">
                 {{csrf_field()}}
                 <div class="form-row">
                     <label for="description">Описание задачи</label>

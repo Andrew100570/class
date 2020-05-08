@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminProperties'], function 
 Route::group(['prefix' => 'manager', 'middleware' => 'auth'], function () {
 
     Route::get('/', 'Admin\ManagerController@index')->name('manager');
+    Route::post('/', 'Admin\ManagerController@saveEntry')->name('manager_entry');
 
 
 });
