@@ -11,7 +11,7 @@
                     <a href="{{route('admin_delete',['id'=>$entry->id])}}">Удалить</a>
                 @endforeach
             </div>
-            <form method="POST" action="{{route('manager_entry')}}" id="form">
+            <form method="POST" action="{{route('admin_entry',['user_id'=>$user->id])}}" id="form">
                 {{csrf_field()}}
                 <div class="form-row">
                     <label for="description">Описание задачи</label>

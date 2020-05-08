@@ -26,7 +26,7 @@ class AdminController extends Controller
         return view('admin.admin_manager',['entries'=>$entries,'user'=>$user]);
     }
 
-    public function saveEntry(Request $request)
+    public function saveEntry(Request $request,$user_id)
     {
 
         $rules = array(
@@ -50,7 +50,7 @@ class AdminController extends Controller
                 $save = new Entry();
 
 
-                $save->user_id = Auth::user()->id;
+                $save->user_id = $user_id;
                 $save->description = $description;
 
                 $save->save();
@@ -62,7 +62,7 @@ class AdminController extends Controller
             }
         }
 
-        return redirect('manager');
+        return redirect()->route('manager_by_id',['id'=>$user_id]);
     }
 
 
