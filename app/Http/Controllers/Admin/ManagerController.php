@@ -24,7 +24,7 @@ class ManagerController extends Controller
 
         $user = Auth::user();
         $entries = $user->entries()->get();
-        return view('admin.manager',['entries'=>$entries,'user'=>$user]);
+        return view('admin.manager',['entries'=>$entries,'user'=>$user,'message' => '']);
     }
 
     public function saveEntry(Request $request)
@@ -42,9 +42,11 @@ class ManagerController extends Controller
 
         if ($validation->fails()) {
             $message = $validation->errors()->first();
-            $success = 0;
+            $user = Auth::user();
+            $entries = $user->entries()->get();
+            return view('admin.manager',['message' => $message,'entries'=>$entries,'user'=>$user]);
         } else {
-            try {
+
                 $description = strip_tags($request->all()['description']);
                 $description = htmlspecialchars($description, ENT_QUOTES);
 
@@ -55,11 +57,7 @@ class ManagerController extends Controller
 
                 $save->save();
 
-            } catch (\Exception $e) {
-                $success = 0;
-                $message = 'Произошла непредвиденная ошибка. Попробуйте позже или свяжитесь с администратором';
-                Log::error($e->getMessage(), ['exception' => $e]);
-            }
+
         }
 
         return redirect('manager');

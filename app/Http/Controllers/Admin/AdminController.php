@@ -23,11 +23,11 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $entries = $user->entries()->get();
-        return view('admin.admin_manager',['entries'=>$entries,'user'=>$user]);
+        return view('admin.admin_manager',['entries'=>$entries,'user'=>$user,'message' => '']);
     }
 
-    public function saveEntry(Request $request,$user_id)
-    {
+    public function saveEntry(Request $request,$user_id)    {
+
 
         $rules = array(
             'description' => 'required'
@@ -41,25 +41,19 @@ class AdminController extends Controller
 
         if ($validation->fails()) {
             $message = $validation->errors()->first();
-            $success = 0;
+            $user = User::find($user_id);
+            $entries = $user->entries()->get();
+            return view('admin.admin_manager',['message' => $message,'user'=>$user,'entries'=>$entries]);
         } else {
-            try {
                 $description = strip_tags($request->all()['description']);
                 $description = htmlspecialchars($description, ENT_QUOTES);
 
                 $save = new Entry();
 
-
                 $save->user_id = $user_id;
                 $save->description = $description;
 
                 $save->save();
-
-            } catch (\Exception $e) {
-                $success = 0;
-                $message = 'Произошла непредвиденная ошибка. Попробуйте позже или свяжитесь с администратором';
-                Log::error($e->getMessage(), ['exception' => $e]);
-            }
         }
 
         return redirect()->route('manager_by_id',['id'=>$user_id]);

@@ -13,6 +13,11 @@
             </div>
             <form method="POST" action="{{route('admin_entry',['user_id'=>$user->id])}}" id="form">
                 {{csrf_field()}}
+                <div class="row mb-3">
+                    <div class="col-lg-12" style="min-height: 1.5rem; color: red">
+                        {{$message}}
+                    </div>
+                </div>
                 <div class="form-row">
                     <label for="description">Описание задачи</label>
                 </div>
