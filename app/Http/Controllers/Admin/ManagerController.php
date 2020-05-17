@@ -44,6 +44,7 @@ class ManagerController extends Controller
             $message = $validation->errors()->first();
             $user = Auth::user();
             $entries = $user->entries()->get();
+
             return view('admin.manager',['message' => $message,'entries'=>$entries,'user'=>$user]);
         } else {
 
@@ -75,6 +76,7 @@ class ManagerController extends Controller
         $description = htmlspecialchars($description, ENT_QUOTES);
 
         $entry = Entry::find($request->all()['id']);
+        $this->authorize('update',$entry);
 
         $entry->description = $description;
         $entry->save();
