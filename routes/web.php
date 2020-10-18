@@ -15,10 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/resultValidate', 'ValidateController@ValidateMake')->name('Validate');
+Route::post('/resultValidate', 'ValidateController@resultValidate')->name('resultValidate');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'AdminProperties'], function () {
 
@@ -32,7 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminProperties'], function 
 });
 
 
-Route::group(['prefix' => 'manager', 'middleware' => ['auth','verified']], function () {
+Route::group(['prefix' => 'manager', 'middleware' => 'auth'], function () {
 
     Route::get('/', 'Admin\ManagerController@index')->name('manager');
     Route::post('/', 'Admin\ManagerController@saveEntry')->name('manager_entry');
